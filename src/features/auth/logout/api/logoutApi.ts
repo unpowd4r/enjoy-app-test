@@ -1,5 +1,5 @@
 export const logout = (): Promise<void> => {
-  localStorage.removeItem('isAuth');
+  localStorage.removeItem('token');
 
   return Promise.resolve();
 };

@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
-import { logout } from '../../api/logoutApi';
-import { useLogout } from '../useLogout';
 import { renderHook } from '@testing-library/react-hooks';
+
 import { QueryWrapper } from 'shared/test/queryWrapper';
+
+import { useLogout } from '../useLogout';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),

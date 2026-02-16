@@ -14,7 +14,8 @@ export const loginRequest = async (login: string, password: string): Promise<boo
   const isSuccess = admin?.login === login && admin?.password === password;
 
   if (isSuccess) {
-    localStorage.setItem('isAuth', 'true');
+    const token = Date.now().toString()
+    localStorage.setItem('token', token);
   }
 
   return isSuccess;
