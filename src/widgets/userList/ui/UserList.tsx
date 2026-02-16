@@ -1,8 +1,7 @@
 import { Flex, Space } from 'antd';
 
 import { UserCard, UserEmptyState, UserListSkeleton, useUsers } from 'entities/users';
-import { CreateUserButton } from 'features/user/createUser';
-import { EditUserModal } from 'features/user/editUser';
+import { CreateUserButton, EditUserModal } from 'features/user';
 import { formatDate } from 'shared/lib/date';
 
 import { useUsersList } from '../model/useUsersList';

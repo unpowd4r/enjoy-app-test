@@ -1,7 +1,7 @@
 import { Typography } from 'antd';
 
 import { ROUTES } from 'shared/consts';
-import { NavigateButton } from 'shared/ui/navigateButton';
+import { NavigateButton } from 'shared/ui';
 
 import { Container, StyledCard } from './HomePage.styles';
 

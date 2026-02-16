@@ -2,7 +2,7 @@ import { Result } from 'antd';
 
 import { ROUTES } from 'shared/consts';
 import { HTTP_STATUS_CODE } from 'shared/consts/httpStatusCode';
-import { NavigateButton } from 'shared/ui/navigateButton';
+import { NavigateButton } from 'shared/ui';
 
 export const NotFoundPage = () => {
   return (

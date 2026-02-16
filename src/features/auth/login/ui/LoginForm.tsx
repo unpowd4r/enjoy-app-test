@@ -1,6 +1,4 @@
-import { Button, Card, Form } from 'antd';
-
-import { Input } from 'shared/ui/input';
+import { Button, Card, Form, Input } from 'antd';
 
 import { type TLoginCredentials } from '../model/types';
 import { useLogin } from '../model/useLogin';

@@ -3,9 +3,9 @@ import { Form, type FormProps, Input, Modal, Space } from 'antd';
 import styled from 'styled-components';
 
 import { type TUserData } from 'entities/users';
-import { DeleteUserButton } from 'features/user/deleteUser';
-import { ModalButton } from 'shared/ui/modalButton';
-import { ModalFooter } from 'shared/ui/modalFooter';
+import { DeleteUserButton } from 'features/user/deleteUser/ui/DeleteUserButton';
+import { MODAL_WIDTH } from 'shared/consts';
+import { ModalButton, ModalFooter } from 'shared/ui';
 
 import { useEditUser } from '../model/useEditUser';
 
@@ -53,7 +53,7 @@ export const EditUserModal = ({ user, open, handleClose }: TProps) => {
       open={open}
       onCancel={handleClose}
       footer={null}
-      width={400}
+      width={MODAL_WIDTH}
     >
       <StyledForm form={form} layout="vertical" onFinish={handleSubmit}>
         <div>

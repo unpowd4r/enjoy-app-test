@@ -1,4 +1,5 @@
-import { ModalButton } from 'shared/ui/modalButton';
+
+import { ModalButton } from 'shared/ui';
 
 import { useDeleteUser } from '../model/useDeleteUser';
 
