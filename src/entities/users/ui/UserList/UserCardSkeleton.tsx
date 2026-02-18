@@ -1,13 +1,15 @@
 import { Card, Skeleton } from 'antd';
 
+import { StyledCard } from '../UserCard.styles';
+
 export const UserCardSkeleton = () => {
   return (
-    <Card>
+    <StyledCard>
       <Card.Meta
         avatar={<Skeleton.Avatar active size={60} />}
         title={<Skeleton.Input active size="small" />}
         description={<Skeleton.Input active size="small" block />}
       />
-    </Card>
+    </StyledCard>
   );
 };

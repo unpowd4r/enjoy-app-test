@@ -1,10 +1,12 @@
-import { Flex, message, Space } from 'antd';
+import { message, Space } from 'antd';
 
-import { UserCard, UserEmptyState, UserListSkeleton, useUsers } from 'entities/users';
+import { UserCard, UserListEmpty, UserListSkeleton, useUsers } from 'entities/users';
 import { CreateUserButton, DeleteUserButton, EditUserModal } from 'features/user';
 import { formatDate } from 'shared/lib/date';
 
 import { useUsersList } from '../model/useUsersList';
+
+import { CardWrapper, ListContainer } from './UserList.styles';
 
 export const UsersList = () => {
   const { data: users, isLoading, isError, error } = useUsers();
@@ -16,25 +18,26 @@ export const UsersList = () => {
   }
 
   if (isLoading) return <UserListSkeleton />;
-  if (!users?.length) return <UserEmptyState />;
+  if (!users?.length) return <UserListEmpty />;
 
   return (
     <>
-      <Flex vertical gap={6}>
+      <ListContainer>
         {users.map((user) => (
-          <UserCard
-            key={user.id}
-            name={user.name}
-            avatar={user.avatar}
-            date={formatDate(user.createdAt)}
-            onClick={() => handleEdit(user)}
-          />
+          <CardWrapper key={user.id}>
+            <UserCard
+              name={user.name}
+              avatar={user.avatar}
+              date={formatDate(user.createdAt)}
+              onClick={() => handleEdit(user)}
+            />
+          </CardWrapper>
         ))}
+      </ListContainer>
 
-        <Space>
-          <CreateUserButton />
-        </Space>
-      </Flex>
+      <Space style={{ marginTop: 16 }}>
+        <CreateUserButton />
+      </Space>
 
       <EditUserModal
         user={editingUser}

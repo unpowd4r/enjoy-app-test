@@ -1,6 +1,7 @@
 export const COLORS = {
   modalButton: '#246190',
-  bodyBg: '#ffffff'
+  bodyBg: '#ffffff',
+  tdColor: '#f0f0f0'
 } as const;
 
 export const THEME_SPACING = {

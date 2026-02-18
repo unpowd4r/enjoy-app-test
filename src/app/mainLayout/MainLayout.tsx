@@ -1,16 +1,16 @@
 import { Outlet } from 'react-router-dom';
 
-import { Header } from 'widgets/header';
+import { Sidebar } from 'widgets/sidebar';
 
 import { Layout, PageContainer } from './MainLayout.styles';
 
 export const MainLayout = () => {
   return (
     <Layout>
-      <Header />
       <PageContainer>
         <Outlet />
       </PageContainer>
+      <Sidebar />
     </Layout>
   );
 };
