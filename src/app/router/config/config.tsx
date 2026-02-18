@@ -2,7 +2,6 @@ import { RouteObject } from 'react-router-dom';
 
 import { MainLayout } from 'app/mainLayout';
 import { RouteGuard } from 'features/auth';
-import { HomePage } from 'pages/home';
 import { LoginPage } from 'pages/login';
 import { NotFoundPage } from 'pages/notFound';
 import { UsersPage } from 'pages/users';
@@ -24,10 +23,8 @@ export const routes: RouteObject[] = [
       </RouteGuard>
     ),
     children: [
-      { path: ROUTES.HOME, element: <HomePage /> },
-      { path: ROUTES.USERS, element: <UsersPage /> },
+      { path: ROUTES.HOME, element: <UsersPage /> },
       { path: ROUTES.NOT_FOUND, element: <NotFoundPage /> }
     ]
-  },
-  
+  }
 ];

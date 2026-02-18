@@ -1,5 +1,5 @@
 export const colors = {
-	modalButton: '#40a9ff',
-	modalButtonBorder: '#d9d9d9',
-	formColor: '#666'
-}
+  modalButton: '#246190',
+  modalButtonBorder: '#d9d9d9',
+  formColor: '#666'
+};

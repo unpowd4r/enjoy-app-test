@@ -11,4 +11,5 @@ export const ButtonWrapper = styled(Form.Item)`
   display: flex;
   justify-content: flex-end;
   margin-bottom: 0;
+  padding-top: 20px;
 `;

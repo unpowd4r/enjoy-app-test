@@ -7,5 +7,5 @@ export const Layout = styled(AntLayout)`
 `;
 
 export const PageContainer = styled(Content)`
-  padding: 24px;
+  padding: 10px 20px;
 `;

@@ -36,7 +36,12 @@ export const UsersList = () => {
         </Space>
       </Flex>
 
-      <EditUserModal user={editingUser} open={!!editingUser} handleClose={handleCloseModal} deleteButton={<DeleteUserButton userId={editingUser?.id}  onSuccess={handleDeleteSuccess}/>}/>
+      <EditUserModal
+        user={editingUser}
+        open={!!editingUser}
+        handleClose={handleCloseModal}
+        deleteButton={<DeleteUserButton userId={editingUser?.id} onSuccess={handleDeleteSuccess} />}
+      />
     </>
   );
 };

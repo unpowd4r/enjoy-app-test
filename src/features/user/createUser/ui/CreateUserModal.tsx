@@ -46,6 +46,7 @@ export const CreateUserModal = ({ open, handleClose }: TProps) => {
         <Form.Item
           name="name"
           label="Имя"
+          required={false}
           rules={[{ required: true, message: 'Введите имя пользователя' }]}
         >
           <Input />
@@ -54,6 +55,7 @@ export const CreateUserModal = ({ open, handleClose }: TProps) => {
         <Form.Item
           name="avatar"
           label="Ссылка на аватарку"
+          required={false}
           rules={[{ required: true, message: 'Вставьте ссылку на аватарку' }]}
         >
           <Input />
