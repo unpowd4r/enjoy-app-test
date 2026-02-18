@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { message } from 'antd';
 import { AxiosError } from 'axios';
 
 import { type TUserData, userKeys } from 'entities/users';
@@ -13,6 +14,10 @@ export const useEditUser = () => {
       api.put<TUserData>(`${API_ENDPOINTS.USERS}/${id}`, userData).then(({ data }) => data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userKeys.lists() });
+    },
+    onError: (error) => {
+      message.error('Ошибка при редактировании пользователя')
+      console.error(error)
     }
   });
 };

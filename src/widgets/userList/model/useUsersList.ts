@@ -13,9 +13,14 @@ export const useUsersList = () => {
     setEditingUser(null);
   };
 
+  const handleDeleteSuccess = () => {
+    handleCloseModal()
+  }
+
   return {
     editingUser,
     handleEdit,
-    handleCloseModal
+    handleCloseModal,
+    handleDeleteSuccess
   };
 };

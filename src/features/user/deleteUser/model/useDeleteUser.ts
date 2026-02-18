@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { message } from 'antd';
 import { AxiosError } from 'axios';
 
 import { userKeys } from 'entities/users';
@@ -12,6 +13,10 @@ export const useDeleteUser = () => {
     mutationFn: (id: string) => api.delete(`${API_ENDPOINTS.USERS}/${id}`),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userKeys.lists() });
+    },
+    onError: (error) => {
+      message.error('Ошибка при удалении пользователя');
+      console.error(error)
     }
   });
 };

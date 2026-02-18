@@ -1,10 +1,8 @@
-import { Form, type FormProps, Input, Modal } from 'antd';
-import styled from 'styled-components';
+import { Form, Input, Modal } from 'antd';
 
 import { type TUserData } from 'entities/users';
 import { MODAL_WIDTH } from 'shared/consts';
 import { nowDate } from 'shared/lib/date';
-import { colors } from 'shared/styles';
 import { ModalButton, ModalFooter } from 'shared/ui';
 
 import { useCreateUser } from '../model/useCreateUser';
@@ -44,7 +42,7 @@ export const CreateUserModal = ({ open, handleClose }: TProps) => {
       footer={null}
       width={MODAL_WIDTH}
     >
-      <StyledForm form={form} layout="vertical" onFinish={handleSubmit}>
+      <Form form={form} layout="vertical" onFinish={handleSubmit}>
         <Form.Item
           name="name"
           label="Имя"
@@ -69,22 +67,7 @@ export const CreateUserModal = ({ open, handleClose }: TProps) => {
             Отмена
           </ModalButton>
         </ModalFooter>
-      </StyledForm>
+      </Form>
     </Modal>
   );
 };
-
-const StyledForm = styled(Form)<FormProps<TCreateUserForm>>`
-  .ant-form-item {
-    margin-bottom: 12px;
-  }
-
-  .ant-form-item-label {
-    padding-bottom: 2px;
-
-    label {
-      font-size: 13px;
-      color: ${colors.formColor};
-    }
-  }
-`;

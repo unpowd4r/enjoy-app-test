@@ -25,11 +25,9 @@ export const routes: RouteObject[] = [
     ),
     children: [
       { path: ROUTES.HOME, element: <HomePage /> },
-      { path: ROUTES.USERS, element: <UsersPage /> }
+      { path: ROUTES.USERS, element: <UsersPage /> },
+      { path: ROUTES.NOT_FOUND, element: <NotFoundPage /> }
     ]
   },
-  {
-    path: ROUTES.NOT_FOUND,
-    element: <NotFoundPage />
-  }
+  
 ];

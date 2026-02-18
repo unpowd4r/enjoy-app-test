@@ -1,14 +1,19 @@
-import { Flex, Space } from 'antd';
+import { Flex, message, Space } from 'antd';
 
 import { UserCard, UserEmptyState, UserListSkeleton, useUsers } from 'entities/users';
-import { CreateUserButton, EditUserModal } from 'features/user';
+import { CreateUserButton, DeleteUserButton, EditUserModal } from 'features/user';
 import { formatDate } from 'shared/lib/date';
 
 import { useUsersList } from '../model/useUsersList';
 
 export const UsersList = () => {
-  const { data: users, isLoading } = useUsers();
-  const { editingUser, handleEdit, handleCloseModal } = useUsersList();
+  const { data: users, isLoading, isError, error } = useUsers();
+  const { editingUser, handleEdit, handleCloseModal, handleDeleteSuccess } = useUsersList();
+
+  if (isError) {
+    message.error(error?.message || 'Не удалось загрузить пользователей');
+    return null;
+  }
 
   if (isLoading) return <UserListSkeleton />;
   if (!users?.length) return <UserEmptyState />;
@@ -31,7 +36,7 @@ export const UsersList = () => {
         </Space>
       </Flex>
 
-      <EditUserModal user={editingUser} open={!!editingUser} handleClose={handleCloseModal} />
+      <EditUserModal user={editingUser} open={!!editingUser} handleClose={handleCloseModal} deleteButton={<DeleteUserButton userId={editingUser?.id}  onSuccess={handleDeleteSuccess}/>}/>
     </>
   );
 };

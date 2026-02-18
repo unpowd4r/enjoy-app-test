@@ -1,17 +1,22 @@
-import { useNavigate } from 'react-router-dom';
 import { useMutation } from '@tanstack/react-query';
+import { message } from 'antd';
+import { AxiosError } from 'axios';
 
-import { ROUTES } from 'shared/consts';
+import { useInvalidateAuth } from 'shared/lib/auth';
 
 import { logout } from '../api/logoutApi';
 
 export const useLogout = () => {
-  const navigate = useNavigate();
+  const invalidateAuth = useInvalidateAuth()
 
-  return useMutation({
+  return useMutation<void, AxiosError>({
     mutationFn: logout,
     onSuccess: () => {
-      navigate(ROUTES.LOGIN);
+      invalidateAuth()
+    },
+    onError: (error) => {
+      message.error('Ошибка при выходе')
+      console.error(error)
     }
   });
 };

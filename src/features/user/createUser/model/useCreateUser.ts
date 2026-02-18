@@ -1,4 +1,5 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { message } from 'antd';
 import { AxiosError } from 'axios';
 
 import { type TUserData, userKeys } from 'entities/users';
@@ -15,6 +16,10 @@ export const useCreateUser = () => {
       api.post<TUserData>(API_ENDPOINTS.USERS, userData).then(({ data }) => data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: userKeys.lists() });
+    },
+    onError: (error) => {
+      message.error('Ошибка при создании пользователя');
+      console.error(error);
     }
   });
 };

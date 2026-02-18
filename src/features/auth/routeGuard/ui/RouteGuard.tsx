@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
 
 import { ROUTES } from 'shared/consts';
-import { isAuthenticated } from 'shared/lib/auth';
+import { useAuth } from 'shared/lib/auth';
 
 interface TProps {
   children: JSX.Element;
@@ -9,7 +9,11 @@ interface TProps {
 }
 
 export const RouteGuard = ({ children, type }: TProps) => {
-  const isAuth = isAuthenticated();
+  const { data: isAuth } = useAuth();
+
+  if (isAuth === undefined) {
+    return null;
+  }
 
   if (type === 'protected' && !isAuth) {
     return <Navigate to={ROUTES.LOGIN} replace />;

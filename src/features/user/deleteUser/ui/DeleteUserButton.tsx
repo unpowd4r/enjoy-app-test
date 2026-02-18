@@ -4,7 +4,7 @@ import { ModalButton } from 'shared/ui';
 import { useDeleteUser } from '../model/useDeleteUser';
 
 interface TProps {
-  userId: string;
+  userId?: string;
   onSuccess?: () => void;
 }
 
@@ -12,6 +12,8 @@ export const DeleteUserButton = ({ userId, onSuccess }: TProps) => {
   const { mutate: deleteUser, isLoading } = useDeleteUser();
 
   const handleDelete = () => {
+    if(!userId) return
+    
     deleteUser(userId, {
       onSuccess: () => {
         onSuccess?.();

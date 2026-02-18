@@ -1,9 +1,7 @@
-import { useEffect } from 'react';
-import { Form, type FormProps, Input, Modal, Space } from 'antd';
-import styled from 'styled-components';
+import { ReactNode, useEffect, useRef } from 'react';
+import { Form, Input, Modal, Space } from 'antd';
 
 import { type TUserData } from 'entities/users';
-import { DeleteUserButton } from 'features/user/deleteUser/ui/DeleteUserButton';
 import { MODAL_WIDTH } from 'shared/consts';
 import { ModalButton, ModalFooter } from 'shared/ui';
 
@@ -15,36 +13,42 @@ interface TProps {
   user: TUserData | null;
   open: boolean;
   handleClose: () => void;
+  deleteButton?: ReactNode;
 }
 
-export const EditUserModal = ({ user, open, handleClose }: TProps) => {
+export const EditUserModal = ({ user, open, handleClose, deleteButton }: TProps) => {
   const [form] = Form.useForm<TEditUserForm>();
   const { mutate: editUser, isLoading: isUserEditing } = useEditUser();
+  const initialValuesRef = useRef<string>('');
 
   useEffect(() => {
     if (user) {
-      form.setFieldsValue({
+      const values = {
         name: user.name,
         avatar: user.avatar
-      });
+      };
+      form.setFieldsValue(values);
+      initialValuesRef.current = JSON.stringify(values);
     }
   }, [user, form]);
 
   if (!user) return null;
 
   const handleSubmit = (values: TEditUserForm) => {
+    if (initialValuesRef.current === JSON.stringify(values)) {
+      handleClose();
+      return;
+    }
+
     editUser(
       { id: user.id, ...values },
       {
         onSuccess: () => {
           handleClose();
+          form.resetFields();
         }
       }
     );
-  };
-
-  const handleDeleteSuccess = () => {
-    handleClose();
   };
 
   return (
@@ -55,23 +59,31 @@ export const EditUserModal = ({ user, open, handleClose }: TProps) => {
       footer={null}
       width={MODAL_WIDTH}
     >
-      <StyledForm form={form} layout="vertical" onFinish={handleSubmit}>
+      <Form form={form} layout="vertical" onFinish={handleSubmit}>
         <div>
           <Form.Item label="id">
             <Input value={user.id} disabled />
           </Form.Item>
 
-          <Form.Item name="name" label="Имя">
+          <Form.Item
+            name="name"
+            label="Имя"
+            rules={[{ required: true, message: 'Введите имя пользователя' }]}
+          >
             <Input />
           </Form.Item>
 
-          <Form.Item name="avatar" label="Ссылка на аватарку">
+          <Form.Item
+            name="avatar"
+            label="Ссылка на аватарку"
+            rules={[{ required: true, message: 'Вставьте ссылку на аватарку' }]}
+          >
             <Input />
           </Form.Item>
         </div>
 
         <ModalFooter justify="space-between">
-          <DeleteUserButton userId={user.id} onSuccess={handleDeleteSuccess} />
+          {deleteButton}
 
           <Space>
             <ModalButton type="primary" htmlType="submit" loading={isUserEditing}>
@@ -82,17 +94,7 @@ export const EditUserModal = ({ user, open, handleClose }: TProps) => {
             </ModalButton>
           </Space>
         </ModalFooter>
-      </StyledForm>
+      </Form>
     </Modal>
   );
 };
-
-const StyledForm = styled(Form)<FormProps<TEditUserForm>>`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-
-  .ant-form-item {
-    margin-bottom: 8px;
-  }
-`;
