@@ -1,11 +1,11 @@
 import { Button } from 'antd';
 import styled from 'styled-components';
 
-import { colors } from 'shared/styles';
+import { COLORS } from 'shared/styles';
 
 export const ModalButton = styled(Button)`
   &:hover {
-    border-color: ${colors.modalButton};
-    color: ${colors.modalButton};
+    border-color: ${COLORS.modalButton};
+    color: ${COLORS.modalButton};
   }
 `;

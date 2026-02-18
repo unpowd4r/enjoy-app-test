@@ -1,14 +1,17 @@
 import { ThemeConfig } from 'antd';
 
-import { colors } from 'shared/styles';
+import { COLORS, THEME_SPACING } from 'shared/styles';
 
 export const antdTheme: ThemeConfig = {
   components: {
     Form: {
-      itemMarginBottom: 8
+      itemMarginBottom: THEME_SPACING.formItemMarginBottom
     },
     Button: {
-      colorPrimary: colors.modalButton
+      colorPrimary: COLORS.modalButton
+    },
+    Layout: {
+      bodyBg: COLORS.bodyBg
     }
   }
 };
